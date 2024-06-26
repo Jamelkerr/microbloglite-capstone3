@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts - Microblog Lite</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  <div class="container">
+    <h1>Posts</h1>
+    <div id="posts-container"></div>
+    <textarea id="postTextInput" placeholder="Write your post here..."></textarea>
+    <button id="sendButton">Send</button>
+    <select id="filterDropdown">
+      <option value="numberOfLikes">Number of Likes</option>
+      <option value="timePostedAscending">Time Posted (Ascending)</option>
+      <option value="timePostedDescending">Time Posted (Descending)</option>
+    </select>
+    <button id="logout-button">Logout</button>
+    <p><a href="profile.html">Profile</a></p>
+  </div>
+  <script src="js/posts.js"></script>
+</body>
+</html>
