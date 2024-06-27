@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <title>Sign Up For Battle!</title>
+
+    <style>
+        body {
+            background: url('images/il_fullxfull.5853614719_bvdw.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .login-block {
+            background: rgba(0, 0, 0, 0.5); /* Black background with 50% transparency */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin-left: 0;
+            color: white; /* Text color set to white */
+        }
+
+        .text-container {
+            background: transparent; /* Transparent background */
+            color: white; /* Text color set to white */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .navbar-custom {
+            background-color: #0c2340; /* Dark blue/navy for navbar */
+        }
+
+        .navbar-custom .nav-link {
+            color: #fff; /* White text for navbar links */
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #17a2b8; /* Light blue for hover */
+        }
+
+        .card {
+            background-color: #1c1c1c; /* Dark grey background for cards */
+            color: #fff; /* Light text color for cards */
+        }
+
+        .btn-primary {
+            background-color: #17a2b8; /* Light blue primary button */
+            border-color: #17a2b8; /* Matching border color */
+        }
+
+        .btn-primary:hover {
+            background-color: #0f6e81; /* Darker blue on hover */
+            border-color: #0f6e81;
+        }
+
+        .btn-outline-light {
+            color: #fff; /* White text for outline buttons */
+            border-color: #fff; /* White border color */
+        }
+
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* White with opacity on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="posts.html">Posts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.html">Your Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="About.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <button id="logoutButton" class="btn btn-outline-light" onclick="redirectToIndex()">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container d-flex justify-content-start align-items-center vh-100">
+            <div class="row w-100">
+                <div class="col-md-6">
+                    <div class="login-block">
+                        <div class="text-center">
+                            <img src="images/il_fullxfull.5853614719_bvdw.webp" style="width: 185px;" alt="logo">
+                            <h4 class="mt-1 mb-5 pb-1">Battle Blog</h4>
+                        </div>
+                        <form id="signUp">
+                            <p>Please create your account</p>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="text" id="username" class="form-control" placeholder="Username" />
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="text" id="fullName" class="form-control" placeholder="Full Name" />
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="password" id="password" class="form-control" placeholder="Password" />
+                            </div>
+
+                            <div class="text-center pt-1 mb-5 pb-1">
+                                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-danger mb-3"
+                                    id="SignUpBtn" type="button" onclick="redirectToIndex()">Sign up for Battle</button>
+                            </div>
+
+                            <p id="messagePara"></p>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="text-container">
+                        <h4 class="mb-4">The Evolution and Impact of Gaming</h4>
+                        <p>Introduction to Gaming: Gaming has evolved from simple pixelated adventures to complex, immersive worlds that rival blockbuster movies. Starting with games like "Pong" and "Pac-Man" in the arcades of the 1970s and 80s, the industry has transformed dramatically with advancements in technology. Today, gaming encompasses various genres and platforms, including consoles, PCs, and mobile devices, catering to a diverse audience of players around the world.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+
+    <!-- Page-specific code -->
+    <script src="scripts/signup.js"></script>
+    <script>
+        function redirectToIndex() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>
