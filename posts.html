@@ -19,9 +19,13 @@
 
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="css/posts.css">
+
     <style>
         body {
-            background-color: #111; /* Dark background color */
+            background-color: #111; /* Fallback color if image is not available */
+            background-image: url('images5TrailerHeader.jpg'); /* Replace with path to your image */
+            background-size: cover;
+            background-position: center;
             color: #fff; /* Light text color */
         }
 

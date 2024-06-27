@@ -1,8 +1,6 @@
-/* auth.js provides LOGIN-related functions */
-
-
 "use strict";
 
+// Base URL for API requests
 const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
 // Backup server (mirror):   "https://microbloglite.onrender.com"
 // const apiBaseURL = "https://microbloglite.onrender.com";
@@ -11,87 +9,69 @@ const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
 // For example: http://microbloglite.us-east-2.elasticbeanstalk.com/docs
 
 
-// You can use this function to get the login data of the logged-in
-// user (if any). It returns either an object including the username
-// and token, or an empty object if the visitor is not logged in.
-function getLoginData () {
+// Function to retrieve login data from local storage
+function getLoginData() {
     const loginJSON = window.localStorage.getItem("login-data");
     return JSON.parse(loginJSON) || {};
 }
 
 
-// You can use this function to see whether the current visitor is
-// logged in. It returns either `true` or `false`.
-function isLoggedIn () {
+// Function to check if the user is logged in
+function isLoggedIn() {
     const loginData = getLoginData();
     return Boolean(loginData.token);
 }
 
 
-// This function is already being used in the starter code for the
-// landing page, in order to process a user's login. READ this code,
-// and feel free to re-use parts of it for other `fetch()` requests
-// you may need to write.
-function login (loginData) {
-    // POST /auth/login
+// Function to handle user login
+function login(loginData) {
+    // POST /auth/login endpoint
     const options = { 
         method: "POST",
         headers: {
-            // This header specifies the type of content we're sending.
-            // This is required for endpoints expecting us to send
-            // JSON data.
-            "Content-Type": "application/json",
+            "Content-Type": "application/json", // Specify JSON content type
         },
-        body: JSON.stringify(loginData),
+        body: JSON.stringify(loginData), // Convert login data to JSON string
     };
 
     return fetch(apiBaseURL + "/auth/login", options)
         .then(response => response.json())
         .then(loginData => {
+            // Handle login response
             if (loginData.message === "Invalid username or password") {
-                console.error(loginData)
-                // Here is where you might want to add an error notification 
-                // or other visible indicator to the page so that the user is  
-                // informed that they have entered the wrong login info.
-                return null
+                console.error(loginData);
+                // Potential UI feedback for invalid login
+                return null;
             }
 
+            // Store login data in local storage
             window.localStorage.setItem("login-data", JSON.stringify(loginData));
-            window.location.assign("/posts.html");  // redirect
+            window.location.assign("/posts.html"); // Redirect to posts page
 
             return loginData;
         });
 }
 
 
-// This is the `logout()` function you will use for any logout button
-// which you may include in various pages in your app. Again, READ this
-// function and you will probably want to re-use parts of it for other
-// `fetch()` requests you may need to write.
-function logout () {
+// Function to handle user logout
+function logout() {
     const loginData = getLoginData();
 
-    // GET /auth/logout
+    // GET /auth/logout endpoint
     const options = { 
         method: "GET",
         headers: { 
-            // This header is how we authenticate our user with the
-            // server for any API requests which require the user
-            // to be logged-in in order to have access.
-            // In the API docs, these endpoints display a lock icon.
-            Authorization: `Bearer ${loginData.token}`,
+            Authorization: `Bearer ${loginData.token}`, // Include JWT token for authentication
         },
     };
 
     fetch(apiBaseURL + "/auth/logout", options)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => console.log(data)) // Log logout response data
         .finally(() => {
-            // We're using `finally()` so that we will continue with the
-            // browser side of logging out (below) even if there is an 
-            // error with the fetch request above.
-
-            window.localStorage.removeItem("login-data");  // remove login data from LocalStorage
-            window.location.assign("/");  // redirect back to landing page
+            // Cleanup: Remove login data from local storage
+            window.localStorage.removeItem("login-data");
+            // Redirect to landing page after logout
+            window.location.assign("/");
         });
 }

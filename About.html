@@ -32,6 +32,18 @@
             border-radius: 8px;
         }
     </style>
+
+     <script src="scripts/auth.js"></script>
+     <script>
+         if (!isLoggedIn()) window.location.replace("index.html");
+ 
+         // Function to handle logout
+         function handleLogout() {
+             logout();
+             window.location.replace("index.html");
+         }
+     </script>
+
 </head>
 <body>
     <header>
@@ -52,7 +64,7 @@
                     </ul>
                 </div>
                 <div>
-                    <button id="logoutButton" class="btn btn-outline-light">Logout</button>
+                    <button id="logoutButton" class="btn btn-outline-light" onclick="handleLogout()">Logout</button>
                 </div>
             </div>
         </nav>
